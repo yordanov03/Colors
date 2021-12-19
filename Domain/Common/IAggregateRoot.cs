@@ -1,4 +1,4 @@
-﻿namespace CarRentalSystem.Domain.Common
+﻿namespace Colors.Domain.Common
 {
     public interface IAggregateRoot
     {

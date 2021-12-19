@@ -1,9 +1,7 @@
 ﻿using Application.Contracts;
-using Application.Features.Identity;
 using AutoMapper.Configuration;
-using CarRentalSystem.Application;
-using CarRentalSystem.Infrastructure;
-using Infrastructure.Identity;
+using Colors.Application;
+using Colors.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;

@@ -1,12 +1,12 @@
-﻿namespace CarRentalSystem.Infrastructure.Persistence
-{
-    using Domain.Common;
-    using Microsoft.EntityFrameworkCore;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
+﻿using Colors.Domain.Common;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
+namespace Colors.Infrastructure.Persistence
+{
     internal class CarRentalDbInitializer : IInitializer
     {
         //private readonly CarRentalDbContext db;

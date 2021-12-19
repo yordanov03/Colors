@@ -1,4 +1,4 @@
-﻿namespace CarRentalSystem.Application.Common
+﻿namespace Colors.Application.Common
 {
     using System;
     using System.Collections.Generic;

@@ -1,4 +1,4 @@
-﻿namespace CarRentalSystem.Web.Middleware
+﻿namespace Colors.Web.Middleware
 {
     using System;
     using System.Net;

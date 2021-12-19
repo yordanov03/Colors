@@ -1,8 +1,7 @@
-﻿namespace CarRentalSystem.Domain
+﻿using Colors.Domain.Factories;
+using Microsoft.Extensions.DependencyInjection;
+namespace Colors.Domain
 {
-    using Factories;
-    using Microsoft.Extensions.DependencyInjection;
-
     public static class DomainConfiguration
     {
         public static IServiceCollection AddDomain(this IServiceCollection services)

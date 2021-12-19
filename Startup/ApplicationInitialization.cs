@@ -1,9 +1,9 @@
-﻿namespace CarRentalSystem.Startup
-{
-    using Infrastructure;
-    using Microsoft.AspNetCore.Builder;
-    using Microsoft.Extensions.DependencyInjection;
+﻿using Colors.Infrastructure;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 
+namespace Colors.Startup
+{
     public static class ApplicationInitialization
     {
         public static IApplicationBuilder Initialize(this IApplicationBuilder app)

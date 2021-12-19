@@ -1,9 +1,9 @@
-using CarRentalSystem.Application;
-using CarRentalSystem.Domain;
-using CarRentalSystem.Infrastructure;
-using CarRentalSystem.Startup;
-using CarRentalSystem.Web;
-using CarRentalSystem.Web.Middleware;
+using Colors.Application;
+using Colors.Domain;
+using Colors.Infrastructure;
+using Colors.Startup;
+using Colors.Web;
+using Colors.Web.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;

@@ -1,5 +1,5 @@
 ﻿using Application.Contracts;
-using CarRentalSystem.Domain.Common;
+using Colors.Domain.Common;
 
 namespace Infrastructure.Persistence.Repositories
 {

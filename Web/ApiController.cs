@@ -1,12 +1,12 @@
-﻿namespace CarRentalSystem.Web
-{
-    using System.Threading.Tasks;
-    using Application.Common;
-    using Common;
-    using MediatR;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.DependencyInjection;
+﻿using Colors.Application.Common;
+using Colors.Web.Common;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
+using System.Threading.Tasks;
 
+namespace Colors.Web
+{
     [ApiController]
     [Route("[controller]")]
     public abstract class ApiController : ControllerBase

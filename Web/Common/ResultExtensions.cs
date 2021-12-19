@@ -1,9 +1,9 @@
-﻿namespace CarRentalSystem.Web.Common
-{
-    using System.Threading.Tasks;
-    using Application.Common;
-    using Microsoft.AspNetCore.Mvc;
+﻿using System.Threading.Tasks;
+using Colors.Application.Common;
+using Microsoft.AspNetCore.Mvc;
 
+namespace Colors.Web.Common
+{
     public static class ResultExtensions
     {
         public static async Task<ActionResult<TData>> ToActionResult<TData>(this Task<TData> resultTask)

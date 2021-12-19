@@ -1,4 +1,4 @@
-﻿namespace CarRentalSystem.Infrastructure
+﻿namespace Colors.Infrastructure
 {
     public interface IInitializer
     {

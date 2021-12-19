@@ -1,10 +1,10 @@
-﻿namespace CarRentalSystem.Domain.Specifications
-{
-    using System;
-    using System.Collections.Concurrent;
-    using System.Collections.Generic;
-    using System.Linq.Expressions;
+﻿using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 
+namespace Colors.Domain.Specifications
+{
     public abstract class Specification<T>
     {
         private static readonly ConcurrentDictionary<string, Func<T, bool>> DelegateCache

@@ -1,7 +1,7 @@
-﻿namespace CarRentalSystem.Domain.Exceptions
-{
-    using System;
+﻿using System;
 
+namespace Colors.Domain.Exceptions
+{
     public abstract class BaseDomainException : Exception
     {
         private string? message;

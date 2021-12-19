@@ -1,4 +1,4 @@
-﻿using CarRentalSystem.Domain.Common;
+﻿using Colors.Domain.Common;
 using System.Threading;
 using System.Threading.Tasks;
 

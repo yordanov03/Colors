@@ -1,4 +1,4 @@
-﻿namespace CarRentalSystem.Application.Exceptions
+﻿namespace Colors.Application.Exceptions
 {
     using System;
 

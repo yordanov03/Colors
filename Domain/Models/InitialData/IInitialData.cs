@@ -1,8 +1,8 @@
-﻿namespace CarRentalSystem.Domain.Common
-{
-    using System;
-    using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
+namespace Colors.Domain.Common
+{
     public interface IInitialData
     {
         Type EntityType { get; }

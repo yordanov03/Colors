@@ -1,4 +1,4 @@
-﻿namespace CarRentalSystem.Domain.Common
+﻿namespace Colors.Domain.Common
 {
     using System;
     using System.Collections.Concurrent;

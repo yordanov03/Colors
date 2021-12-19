@@ -1,4 +1,4 @@
-﻿namespace CarRentalSystem.Domain.Common
+﻿namespace Colors.Domain.Common
 {
     public abstract class Entity<TId>
         where TId : struct

@@ -1,4 +1,4 @@
-﻿namespace CarRentalSystem.Application
+﻿namespace Colors.Application
 {
     public class ApplicationSettings
     {

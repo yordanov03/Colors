@@ -4,7 +4,7 @@ namespace Colors.Domain.Exceptions
 {
     public abstract class BaseDomainException : Exception
     {
-        private string? message;
+        private string message;
 
         public new string Message
         {

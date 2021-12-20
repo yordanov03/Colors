@@ -1,10 +1,10 @@
 ﻿namespace Colors.Domain.Common
 {
     public abstract class Entity
-        //<TId>
-        //where TId : struct
+        <TId>
+        where TId : struct
     {
-        //public TId Id { get; private set; } = default;
+        public TId Id { get; private set; } = default;
 
         //public override bool Equals(object? obj)
         //{

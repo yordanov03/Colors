@@ -1,4 +1,9 @@
 ﻿using Colors.Domain.Factories;
+using Domain.Common;
+using Domain.Factories.PersonFactory;
+using Domain.InitialData;
+using Domain.Models.Common;
+using Domain.Services;
 using Microsoft.Extensions.DependencyInjection;
 namespace Colors.Domain
 {
@@ -12,6 +17,8 @@ namespace Colors.Domain
                         .AssignableTo(typeof(IFactory<>)))
                     .AsMatchingInterface()
                     .WithTransientLifetime())
-/*                .AddTransient<IInitialData, CategoryData>()*/;
+            .AddTransient<IPeopleDataParser, PeopleDataParser>()
+            .AddTransient<IInitialData, ColorData>()
+            .AddTransient<IInitialData, PersonData>();
     }
 }

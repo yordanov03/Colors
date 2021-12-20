@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Colors.Domain.Common
+namespace Domain.Common
 {
     public interface IInitialData
     {

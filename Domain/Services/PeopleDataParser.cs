@@ -4,6 +4,7 @@ using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
+using static Colors.Domain.Common.ModelConstants;
 
 namespace Domain.Services
 {
@@ -22,13 +23,11 @@ namespace Domain.Services
 
         public List<Person> ParseData()
         {
-            var path = "../Domain/InitialData/SourceFiles/sample-input.csv";
-            var dataFromFile = File.ReadAllLines(path);
+            var dataFromFile = File.ReadAllLines(_fileLocation.);
 
             var concatenatedLines = ConcatenatedLines(dataFromFile);
 
-            var pattern = @"^([A-züöäß]+),\s*([A-züöäß]+),\s*([0-9]{5})\s*(.+),\s*([0-9]{1})";
-            var parsedPeopleData = Parsepeople(pattern, concatenatedLines);
+            var parsedPeopleData = Parsepeople(PeopleInputRegexPattern, concatenatedLines);
 
             return parsedPeopleData;
         }

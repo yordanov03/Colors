@@ -33,7 +33,7 @@ namespace Startup
             services.Configure<Person>(fileLocation);
 
             services.AddControllers();
-            services.AddDomain();
+            services.AddDomain(this.Configuration);
             services.AddApplication(this.Configuration);
             services.AddInfrastructure(this.Configuration);
             services.AddWebComponents();

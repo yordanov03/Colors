@@ -9,5 +9,6 @@
         public const int ColorMaxLength = 15;
         public const int ZipcodeMaxLength = 5;
         public const string ZipcodeRegexPattern = "^[0-9]{5}$";
+        public const string PeopleInputRegexPattern = @"^([A-züöäß]+),\s*([A-züöäß]+),\s*([0-9]{5})\s*(.+),\s*([0-9]{1})";
     }
 }

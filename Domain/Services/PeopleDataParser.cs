@@ -23,7 +23,7 @@ namespace Domain.Services
 
         public List<Person> ParseData()
         {
-            var dataFromFile = File.ReadAllLines(_fileLocation.);
+            var dataFromFile = File.ReadAllLines(_fileLocation.PeopleData);
 
             var concatenatedLines = ConcatenatedLines(dataFromFile);
 

@@ -11,8 +11,8 @@ using System.Threading.Tasks;
 
 namespace Web.Features
 {
-    [Route("persons")]
     [ApiController]
+    [Route("persons")]
     public class PeopleController : ApiController
     {
         [HttpGet]

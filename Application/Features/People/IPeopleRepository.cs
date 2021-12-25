@@ -11,6 +11,6 @@ namespace Application.Features.People
     {
         Task<IEnumerable<PersonOutputModel>> GetAllPeople(CancellationToken cancellationToken);
         Task<Person> GerPersonById(int id, CancellationToken cancellationToken);
-        Task<List<Person>> GetPeopleByColor(int colorId, CancellationToken cancellationToken);
+        Task<IEnumerable<PersonOutputModel>> GetPeopleByColor(int colorId, CancellationToken cancellationToken);
     }
 }

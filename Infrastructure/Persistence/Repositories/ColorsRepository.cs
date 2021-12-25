@@ -1,27 +1,22 @@
 ﻿using Application.Features.Colors;
 using Domain.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence.Repositories
 {
-    internal class ColorsRepository : IColorsRepository
+    internal class ColorsRepository : DataRepository<Color>, IColorsRepository
     {
-        private readonly PeopleAndColorsDbContext _db;
-
-        public ColorsRepository(PeopleAndColorsDbContext db)
+        public ColorsRepository(PeopleAndColorsDbContext db) : base(db)
         {
-            this._db = db;
         }
+
         public async Task<List<Color>> GetAllColors(CancellationToken cancellationToken)
-        => await this._db.Colors.ToListAsync(cancellationToken);
+        => await this.Data.Colors.ToListAsync(cancellationToken);
 
-        public Task Save(Color entity, CancellationToken cancellationToken = default)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<Color> GetColorByName(string color, CancellationToken cancellationToken)
+        => await this.Data.Colors.FirstOrDefaultAsync(c => c.Name == color);
     }
 }

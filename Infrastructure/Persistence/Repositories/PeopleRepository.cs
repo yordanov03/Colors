@@ -24,7 +24,10 @@ namespace Infrastructure.Persistence.Repositories
         public async Task<IEnumerable<PersonOutputModel>> GetAllPeople(CancellationToken cancellationToken)
         => await this._mapper.ProjectTo<PersonOutputModel>(this.Data.People).ToListAsync(cancellationToken);
 
-        public async Task<List<Person>> GetPeopleByColor(int colorId, CancellationToken cancellationToken)
-        => await this.Data.People.Where(p => p.ColorId == colorId).ToListAsync(cancellationToken);
+        public async Task<IEnumerable<PersonOutputModel>> GetPeopleByColor(int colorId, CancellationToken cancellationToken)
+        => await this._mapper
+            .ProjectTo<PersonOutputModel>
+            (this.Data.People.Where(p=>p.ColorId == colorId))
+            .ToListAsync(cancellationToken);
     }
 }

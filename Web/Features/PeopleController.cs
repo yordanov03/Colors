@@ -11,22 +11,22 @@ using System.Threading.Tasks;
 
 namespace Web.Features
 {
-    [Route("api/[controller]")]
+    [Route("persons")]
     [ApiController]
     public class PeopleController : ApiController
     {
         [HttpGet]
-        [Route("people")]
         public async Task<ActionResult<IEnumerable<PersonOutputModel>>> GetAllPeople([FromQuery]GetAllPeopleQuery query)
             => await this.Send(query);
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<PersonOutputModel>>> GetPeopleByColor([FromQuery]GetPeopleByColorQuery query)
+        [Route("color/{Color}")]
+        public async Task<ActionResult<IEnumerable<PersonOutputModel>>> GetPeopleByColor([FromRoute]GetPeopleByColorQuery query)
         => await this.Send(query);
 
         [HttpGet]
-        [Route("person")]
-        public async Task<ActionResult<PersonOutputModel>> GetPersonById([FromQuery] GetPersonByIdQuery query)
+        [Route("{Id}")]
+        public async Task<ActionResult<PersonOutputModel>> GetPersonById([FromRoute] GetPersonByIdQuery query)
         => await this.Send(query);
 
     }

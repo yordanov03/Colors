@@ -26,11 +26,5 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<List<Person>> GetPeopleByColor(int colorId, CancellationToken cancellationToken)
         => await this.Data.People.Where(p => p.ColorId == colorId).ToListAsync(cancellationToken);
-
-        public async Task Save(Person person, CancellationToken cancellationToken)
-        {
-            await this.Data.People.AddAsync(person, cancellationToken);
-            await this.Data.SaveChangesAsync(cancellationToken);
-        }
     }
 }

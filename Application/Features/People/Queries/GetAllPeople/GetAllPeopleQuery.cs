@@ -1,10 +1,11 @@
 ﻿using Application.Features.Colors;
+using Application.Features.People.Queries.Common;
 using MediatR;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.Features.People.Queries.Common
+namespace Application.Features.People.Queries.GetAllPeople
 {
     public class GetAllPeopleQuery : IRequest<IEnumerable<PersonOutputModel>>
     {

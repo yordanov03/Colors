@@ -1,4 +1,5 @@
 ﻿using Application.Features.People.Queries.Common;
+using Application.Features.People.Queries.GetAllPeople;
 using Colors.Web;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;

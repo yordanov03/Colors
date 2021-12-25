@@ -18,8 +18,8 @@ namespace Infrastructure.Persistence.Repositories
         => this._mapper = mapper;
 
 
-        public async Task<Person> GerPersonById(int id, CancellationToken cancellationToken)
-        => await this.Data.People.FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
+        public async Task<PersonOutputModel> GerPersonById(int id, CancellationToken cancellationToken)
+        => await this._mapper.ProjectTo<PersonOutputModel>(this.Data.People).FirstOrDefaultAsync(p=>p.Id == id, cancellationToken);
 
         public async Task<IEnumerable<PersonOutputModel>> GetAllPeople(CancellationToken cancellationToken)
         => await this._mapper.ProjectTo<PersonOutputModel>(this.Data.People).ToListAsync(cancellationToken);

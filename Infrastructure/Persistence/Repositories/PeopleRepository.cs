@@ -13,21 +13,55 @@ namespace Infrastructure.Persistence.Repositories
     internal class PeopleRepository : DataRepository<Person>, IPeopleRepository
     {
         private readonly IMapper _mapper;
+        private readonly List<Color> colors;
 
-        public PeopleRepository(PeopleAndColorsDbContext db, IMapper mapper) : base(db)
-        => this._mapper = mapper;
+        public PeopleRepository(
+            PeopleAndColorsDbContext db, 
+            IMapper mapper) : base(db)
+        {
+            this._mapper = mapper;
+            this.colors = this.Data.Colors.ToList();
+        }
 
 
-        public async Task<PersonOutputModel> GerPersonById(int id, CancellationToken cancellationToken)
-        => await this._mapper.ProjectTo<PersonOutputModel>(this.Data.People).FirstOrDefaultAsync(p=>p.Id == id, cancellationToken);
+        public PersonOutputModel GerPersonById(int id)
+        {
+            var person = this.Data.People.FirstOrDefaultAsync(p => p.Id == id);
+            var personWithColor = GetColorById(person.Result);
+            return personWithColor;
+        }
 
-        public async Task<IEnumerable<PersonOutputModel>> GetAllPeople(CancellationToken cancellationToken)
-        => await this._mapper.ProjectTo<PersonOutputModel>(this.Data.People).ToListAsync(cancellationToken);
+        public IEnumerable<PersonOutputModel> GetAllPeople()
+        {
+            var people = this.Data.People.ToList();
+            return MatchPeopleWithColors(people);
+        }
 
-        public async Task<IEnumerable<PersonOutputModel>> GetPeopleByColor(int colorId, CancellationToken cancellationToken)
-        => await this._mapper
-            .ProjectTo<PersonOutputModel>
-            (this.Data.People.Where(p=>p.ColorId == colorId))
-            .ToListAsync(cancellationToken);
+
+        public IEnumerable<PersonOutputModel> GetPeopleByColor(int colorId)
+        {
+            var people = this.Data.People.Where(p => p.ColorId == colorId).ToList();
+            return MatchPeopleWithColors(people);
+        }
+
+        public PersonOutputModel GetColorById(Person person)
+        {
+            var color = this.colors.FirstOrDefault(c => c.Id == person.ColorId);
+            var personOutput = this._mapper.Map<Person, PersonOutputModel>(person);
+            personOutput.Color = color.Name;
+
+            return personOutput;
+        }
+        public IEnumerable<PersonOutputModel> MatchPeopleWithColors(List<Person> people)
+        {
+            var peopleWithColors = new List<PersonOutputModel>();
+
+            foreach (var person in people)
+            {
+                peopleWithColors.Add(GetColorById(person));
+            }
+
+            return peopleWithColors;
+        }
     }
 }

@@ -1,9 +1,8 @@
-﻿using Application.Mapping;
-using Domain.Models;
+﻿using Domain.Models;
 
 namespace Application.Features.People.Queries.Common
 {
-    public class PersonOutputModel : IMapFrom<Person>
+    public class PersonOutputModel
     {
         public int Id { get;  set; }
         public string FirstName { get; set; }

@@ -12,7 +12,6 @@ namespace Colors.Application
             this IServiceCollection services,
             IConfiguration configuration)
             => services
-                .AddAutoMapper(Assembly.GetExecutingAssembly())
                 .AddMediatR(Assembly.GetExecutingAssembly())
                 .AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
     }

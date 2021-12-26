@@ -24,23 +24,23 @@ namespace Infrastructure.Persistence.Repositories
         }
 
 
-        public PersonOutputModel GerPersonById(int id)
+        public async Task<PersonOutputModel> GerPersonById(int id, CancellationToken cancellationToken)
         {
-            var person = this.Data.People.FirstOrDefaultAsync(p => p.Id == id);
-            var personWithColor = GetColorById(person.Result);
+            var person = await this.Data.People.FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
+            var personWithColor = GetColorById(person);
             return personWithColor;
         }
 
-        public IEnumerable<PersonOutputModel> GetAllPeople()
+        public async Task<IEnumerable<PersonOutputModel>> GetAllPeople(CancellationToken cancellationToken)
         {
-            var people = this.Data.People.ToList();
+            var people = await this.Data.People.ToListAsync(cancellationToken);
             return MatchPeopleWithColors(people);
         }
 
 
-        public IEnumerable<PersonOutputModel> GetPeopleByColor(int colorId)
+        public async Task<IEnumerable<PersonOutputModel>> GetPeopleByColor(int colorId, CancellationToken cancellationToken)
         {
-            var people = this.Data.People.Where(p => p.ColorId == colorId).ToList();
+            var people = await this.Data.People.Where(p => p.ColorId == colorId).ToListAsync(cancellationToken);
             return MatchPeopleWithColors(people);
         }
 

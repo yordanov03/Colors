@@ -1,15 +1,15 @@
-﻿namespace Colors.Web.Middleware
-{
-    using System;
-    using System.Net;
-    using System.Threading.Tasks;
-    using Application.Exceptions;
-    using Domain.Exceptions;
-    using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Http;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Serialization;
+﻿using Colors.Application.Exceptions;
+using Colors.Domain.Exceptions;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System;
+using System.Net;
+using System.Threading.Tasks;
 
+namespace Colors.Web.Middleware
+{
     public class ValidationExceptionHandlerMiddleware
     {
         private readonly RequestDelegate next;

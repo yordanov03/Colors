@@ -9,11 +9,11 @@ namespace Application.Features.People.Queries.GetPersonById
     {
         public int Id { get; set; }
 
-        public class GetPersonByIdQueryhandler : IRequestHandler<GetPersonByIdQuery, PersonOutputModel>
+        public class GetPersonByIdQueryHandler : IRequestHandler<GetPersonByIdQuery, PersonOutputModel>
         {
             private readonly IPeopleRepository _peoplerepository;
 
-            public GetPersonByIdQueryhandler(IPeopleRepository peoplerepository)
+            public GetPersonByIdQueryHandler(IPeopleRepository peoplerepository)
             {
                 this._peoplerepository = peoplerepository;
             }

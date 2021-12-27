@@ -1,5 +1,6 @@
 ﻿using Application.Features.Colors;
 using Application.Features.People.Queries.Common;
+using Colors.Application.Exceptions;
 using MediatR;
 using System.Collections.Generic;
 using System.Threading;
@@ -11,12 +12,12 @@ namespace Application.Features.People.Queries.GetPeopleByColor
     {
         public string Color { get; set; }
 
-        public class GetPeopleByColorRequestHandler : IRequestHandler<GetPeopleByColorQuery, IEnumerable<PersonOutputModel>>
+        public class GetPeopleByColorQueryHandler : IRequestHandler<GetPeopleByColorQuery, IEnumerable<PersonOutputModel>>
         {
             private readonly IPeopleRepository _peopleRepository;
             private readonly IColorsRepository _colorsRepository;
 
-            public GetPeopleByColorRequestHandler(
+            public GetPeopleByColorQueryHandler(
                 IPeopleRepository peopleRepository,
                 IColorsRepository colorsRepository)
             {
@@ -26,6 +27,11 @@ namespace Application.Features.People.Queries.GetPeopleByColor
             public async Task<IEnumerable<PersonOutputModel>> Handle(GetPeopleByColorQuery request, CancellationToken cancellationToken)
             {
                 var color = await this._colorsRepository.GetColorByName(request.Color, cancellationToken);
+
+                //if(color == null)
+                //{
+                //    throw new NotFoundException(request.Color, color);
+                //}
                 return await this._peopleRepository.GetPeopleByColor(color.Id, cancellationToken);
             }
              

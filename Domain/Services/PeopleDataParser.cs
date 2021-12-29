@@ -1,6 +1,7 @@
 ﻿using Domain.Factories.PersonFactory;
 using Domain.Models;
 using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -83,7 +84,7 @@ namespace Domain.Services
 
         private string RemoveSpecialChars(string line)
         {
-            var filteredInput = line.Split(SpecialCharsToRemove, System.StringSplitOptions.None);
+            var filteredInput = line.Split(SpecialCharsToRemove, StringSplitOptions.None);
             return string.Join("", filteredInput);
         }
     }

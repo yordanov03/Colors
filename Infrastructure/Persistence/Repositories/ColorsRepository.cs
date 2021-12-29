@@ -29,7 +29,7 @@ namespace Infrastructure.Persistence.Repositories
 
             if (colorToFind == null)
             {
-                this._logger.LogDebug("No such colors exists in db");
+                this._logger.LogError("No such color exists in db");
                 throw new InvalidColorException($"{color} is not a valid color");
             }
 

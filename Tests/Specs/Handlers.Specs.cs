@@ -6,10 +6,8 @@ using Application.Features.People.Queries.GetPeopleByColor;
 using Application.Features.People.Queries.GetPersonById;
 using FluentAssertions;
 using Moq;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using Tests.Fakes;
@@ -34,8 +32,7 @@ namespace Tests.Specs
         public async Task GetAllPeopleSHouldReturnCollectionOfOutputModels()
         {
             //Arrange
-            var handler = new GetAllPeopleQueryHandler(
-                _peopleRepository.Object, _colorsRepository.Object);
+            var handler = new GetAllPeopleQueryHandler(_peopleRepository.Object);
 
             //Act
             var result = await handler.Handle(new GetAllPeopleQuery(), CancellationToken.None);
@@ -53,7 +50,7 @@ namespace Tests.Specs
                 _peopleRepository.Object, _colorsRepository.Object);
 
             //Act
-            var result =  await handler.Handle(new GetPeopleByColorQuery(), CancellationToken.None);
+            var result = await handler.Handle(new GetPeopleByColorQuery(), CancellationToken.None);
 
             //Assert
             result.Should().NotBeNull();

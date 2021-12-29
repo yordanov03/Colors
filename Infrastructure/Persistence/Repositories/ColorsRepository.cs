@@ -2,6 +2,7 @@
 using Domain.Exceptions;
 using Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -11,8 +12,12 @@ namespace Infrastructure.Persistence.Repositories
 {
     internal class ColorsRepository : DataRepository<Color>, IColorsRepository
     {
-        public ColorsRepository(PeopleAndColorsDbContext db) : base(db)
+        private readonly ILogger <ColorsRepository>_logger;
+        public ColorsRepository(
+            PeopleAndColorsDbContext db,
+            ILogger<ColorsRepository> logger) : base(db)
         {
+            this._logger = logger;
         }
 
         public async Task<List<Color>> GetAllColors(CancellationToken cancellationToken)
@@ -24,10 +29,11 @@ namespace Infrastructure.Persistence.Repositories
 
             if (colorToFind == null)
             {
+                this._logger.LogDebug("No such colors exists in db");
                 throw new InvalidColorException($"{color} is not a valid color");
             }
 
-            return await this.Data.Colors.FirstOrDefaultAsync(c => c.Name == color);
+            return await this.Data.Colors.FirstOrDefaultAsync(c => c.Name == color, cancellationToken);
         }
     }
 }

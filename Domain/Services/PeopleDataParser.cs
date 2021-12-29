@@ -82,7 +82,7 @@ namespace Domain.Services
             return concatenatedLines;
         }
 
-        private string RemoveSpecialChars(string line)
+        private static string RemoveSpecialChars(string line)
         {
             var filteredInput = line.Split(SpecialCharsToRemove, StringSplitOptions.None);
             return string.Join("", filteredInput);

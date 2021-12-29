@@ -12,8 +12,7 @@ namespace Tests.Fakes
         public static Mock<IColorsRepository> GetColorsrepository()
         {
             var color = A.Dummy<Color>();
-            var colors = new List<Color>();
-            colors.Add(color);
+            var colors = new List<Color> { color, color };
 
             var mockRepo = new Mock<IColorsRepository>();
 

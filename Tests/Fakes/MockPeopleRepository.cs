@@ -12,9 +12,8 @@ namespace Tests.Fakes
         public static Mock<IPeopleRepository> GetPeopleRepository()
         {
             var person = A.Dummy<PersonOutputModel>();
-            var people = new List<PersonOutputModel>();
-            people.Add(person);
-            people.Add(person);
+            var people = new List<PersonOutputModel> 
+            { person, person };
 
             var mockRepo = new Mock<IPeopleRepository>();
 

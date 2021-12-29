@@ -1,6 +1,6 @@
 ﻿using Colors.Domain.Exceptions;
-using Colors.Domain.Models;
-using System;
+using System.Text.RegularExpressions;
+using static Colors.Domain.Common.ModelConstants;
 
 namespace Colors.Domain.Common
 {
@@ -52,18 +52,6 @@ namespace Colors.Domain.Common
             ThrowException<TException>($"{name} must be between {min} and {max}.");
         }
 
-        public static void ForValidUrl<TException>(string url, string name = "Value")
-            where TException : BaseDomainException, new()
-        {
-            if (url.Length <= ModelConstants.Common.MaxUrlLength &&
-                Uri.IsWellFormedUriString(url, UriKind.Absolute))
-            {
-                return;
-            }
-
-            ThrowException<TException>($"{name} must be a valid URL.");
-        }
-
 
         public static void Against<TException>(object actualValue, object unexpectedValue, string name = "Value")
             where TException : BaseDomainException, new()
@@ -74,6 +62,24 @@ namespace Colors.Domain.Common
             }
 
             ThrowException<TException>($"{name} must not be {unexpectedValue}.");
+        }
+
+        public static void ForValidZipcode<TException>(string zipcode, string name = "Value")
+           where TException : BaseDomainException, new()
+        {
+            bool validZipcode;
+
+            if (!string.IsNullOrEmpty(zipcode))
+            {
+                validZipcode = Regex.IsMatch(zipcode, ZipcodeRegexPattern);
+
+                if (validZipcode)
+                {
+                    return;
+                }
+            }
+
+            ThrowException<TException>($"{name} must be a valid zipcode.");
         }
 
         private static void ThrowException<TException>(string message)

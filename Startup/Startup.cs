@@ -1,15 +1,16 @@
 using Colors.Application;
 using Colors.Domain;
-using Colors.Infrastructure;
 using Colors.Startup;
-using Colors.Web;
 using Colors.Web.Middleware;
+using Domain.Models;
+using Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Serilog;
 using Web;
 
 namespace Startup
@@ -19,6 +20,10 @@ namespace Startup
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(configuration)
+                .CreateLogger();
         }
 
         public IConfiguration Configuration { get; }
@@ -26,11 +31,13 @@ namespace Startup
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var fileLocation = Configuration.GetSection(FileLocation.LocationOfFile);
+            services.Configure<Person>(fileLocation);
 
             services.AddControllers();
-            services.AddDomain();
+            services.AddDomain(this.Configuration);
             services.AddApplication(this.Configuration);
-            //services.AddInfrastructure(this.Configuration);
+            services.AddInfrastructure(this.Configuration);
             services.AddWebComponents();
             services.AddSwaggerGen(c =>
             {

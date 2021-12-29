@@ -1,6 +1,5 @@
 ﻿using Application.Features.Colors;
 using Colors.Application.Exceptions;
-using Domain.Exceptions;
 using Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -13,7 +12,7 @@ namespace Infrastructure.Persistence.Repositories
 {
     internal class ColorsRepository : DataRepository<Color>, IColorsRepository
     {
-        private readonly ILogger <ColorsRepository>_logger;
+        private readonly ILogger<ColorsRepository> _logger;
         public ColorsRepository(
             PeopleAndColorsDbContext db,
             ILogger<ColorsRepository> logger) : base(db)
@@ -31,7 +30,7 @@ namespace Infrastructure.Persistence.Repositories
             if (colorToFind == null)
             {
                 this._logger.LogError("No such color exists in db");
-                throw new NotFoundException("color", color);
+                throw new NotFoundException("color with name", color);
             }
 
             return await this.Data.Colors.FirstOrDefaultAsync(c => c.Name == color, cancellationToken);
@@ -44,7 +43,7 @@ namespace Infrastructure.Persistence.Repositories
             if (colorToFind == null)
             {
                 this._logger.LogError("No such color exists in db");
-                throw new InvalidColorException($"Color with {colorToFind.Id} does not exist");
+                throw new NotFoundException($"Color with id", id);
             }
 
             return await this.Data.Colors.FirstOrDefaultAsync(c => c.Id == id, cancellationToken);

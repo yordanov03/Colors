@@ -25,7 +25,6 @@ namespace Tests.Fakes
             mockRepo.Setup(r => r.GetPeopleByColor(It.IsAny<int>(), CancellationToken.None)).ReturnsAsync(people);
 
             return mockRepo;
-
         }
     }
 }

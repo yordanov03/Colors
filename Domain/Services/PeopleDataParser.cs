@@ -38,7 +38,9 @@ namespace Domain.Services
 
             foreach (var line in concatenatedLines)
             {
-                var matched = Regex.Match(line, pattern);
+                var filteredInput = RemoveSpecialChars(line);
+
+                var matched = Regex.Match(filteredInput, pattern);
                 var person = this._personFactory
                     .WithFirstName(matched.Groups[2].Value)
                     .WithLastName(matched.Groups[1].Value)
@@ -77,6 +79,12 @@ namespace Domain.Services
                 }
             }
             return concatenatedLines;
+        }
+
+        private string RemoveSpecialChars(string line)
+        {
+            var filteredInput = line.Split(SpecialCharsToRemove, System.StringSplitOptions.None);
+            return string.Join("", filteredInput);
         }
     }
 }

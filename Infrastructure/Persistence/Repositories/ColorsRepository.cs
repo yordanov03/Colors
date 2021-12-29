@@ -1,4 +1,5 @@
 ﻿using Application.Features.Colors;
+using Colors.Application.Exceptions;
 using Domain.Exceptions;
 using Domain.Models;
 using Microsoft.EntityFrameworkCore;
@@ -30,10 +31,23 @@ namespace Infrastructure.Persistence.Repositories
             if (colorToFind == null)
             {
                 this._logger.LogError("No such color exists in db");
-                throw new InvalidColorException($"{color} is not a valid color");
+                throw new NotFoundException("color", color);
             }
 
             return await this.Data.Colors.FirstOrDefaultAsync(c => c.Name == color, cancellationToken);
+        }
+
+        public async Task<Color> GetColorById(int id, CancellationToken cancellationToken)
+        {
+            var colorToFind = this.Data.Colors.FirstOrDefault(c => c.Id == id);
+
+            if (colorToFind == null)
+            {
+                this._logger.LogError("No such color exists in db");
+                throw new InvalidColorException($"Color with {colorToFind.Id} does not exist");
+            }
+
+            return await this.Data.Colors.FirstOrDefaultAsync(c => c.Id == id, cancellationToken);
         }
     }
 }

@@ -1,8 +1,11 @@
-﻿using Application.Features.People;
+﻿using Application.Features.Colors;
+using Application.Features.People;
 using Application.Features.People.Queries.Common;
 using AutoMapper;
+using Colors.Application.Exceptions;
 using Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -12,21 +15,31 @@ namespace Infrastructure.Persistence.Repositories
 {
     internal class PeopleRepository : DataRepository<Person>, IPeopleRepository
     {
+        private readonly IColorsRepository _colorsRepository;
         private readonly IMapper _mapper;
-        private readonly List<Color> colors;
+        private readonly ILogger<PeopleRepository> _logger;
 
         public PeopleRepository(
-            PeopleAndColorsDbContext db, 
-            IMapper mapper) : base(db)
+            PeopleAndColorsDbContext db,
+            IColorsRepository colorsRepository,
+            IMapper mapper,
+            ILogger<PeopleRepository> logger) : base(db)
         {
+            this._colorsRepository = colorsRepository;
             this._mapper = mapper;
-            this.colors = this.Data.Colors.ToList();
+            this._logger = logger;
         }
 
 
         public async Task<PersonOutputModel> GerPersonById(int id, CancellationToken cancellationToken)
         {
             var person = await this.Data.People.FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
+
+            if(person == null)
+            {
+                this._logger.LogError($"Person with {id} does not exist");
+                throw new NotFoundException("person with id", id );
+            }
             var personWithColor = GetColorById(person);
             return personWithColor;
         }
@@ -46,10 +59,11 @@ namespace Infrastructure.Persistence.Repositories
 
         public PersonOutputModel GetColorById(Person person)
         {
-            var color = this.colors.FirstOrDefault(c => c.Id == person.ColorId);
+            var color = this._colorsRepository.GetColorById(person.ColorId, CancellationToken.None);
             var personOutput = this._mapper.Map<Person, PersonOutputModel>(person);
-            personOutput.Color = color.Name;
+            personOutput.Color = color.Result.Name;
 
+            this._logger.LogDebug("Mapping to output model is done");
             return personOutput;
         }
         public IEnumerable<PersonOutputModel> MatchPeopleWithColors(List<Person> people)
@@ -61,6 +75,7 @@ namespace Infrastructure.Persistence.Repositories
                 peopleWithColors.Add(GetColorById(person));
             }
 
+            this._logger.LogDebug("Succcessfully matched people with existent colors");
             return peopleWithColors;
         }
     }

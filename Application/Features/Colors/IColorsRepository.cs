@@ -10,5 +10,6 @@ namespace Application.Features.Colors
     {
         Task<List<Color>> GetAllColors(CancellationToken cancellationToken);
         Task<Color> GetColorByName(string color, CancellationToken cancellationToken);
+        Task<Color> GetColorById(int id, CancellationToken cancellationToken);
     }
 }

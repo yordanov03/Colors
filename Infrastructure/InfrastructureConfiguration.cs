@@ -5,6 +5,7 @@ using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace Infrastructure
 {
@@ -15,7 +16,8 @@ namespace Infrastructure
             IConfiguration configuration)
             => services
                 .AddDatabase(configuration)
-                .AddRepositories();
+                .AddRepositories()
+            .AddAutoMapper(Assembly.GetExecutingAssembly());
 
         private static IServiceCollection AddDatabase(
             this IServiceCollection services,

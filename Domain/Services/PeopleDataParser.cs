@@ -1,9 +1,11 @@
 ﻿using Domain.Factories.PersonFactory;
 using Domain.Models;
 using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
+using static Colors.Domain.Common.ModelConstants;
 
 namespace Domain.Services
 {
@@ -22,13 +24,11 @@ namespace Domain.Services
 
         public List<Person> ParseData()
         {
-            var path = "../Domain/InitialData/SourceFiles/sample-input.csv";
-            var dataFromFile = File.ReadAllLines(path);
+            var dataFromFile = File.ReadAllLines(_fileLocation.PeopleData);
 
             var concatenatedLines = ConcatenatedLines(dataFromFile);
 
-            var pattern = @"^([A-züöäß]+),\s*([A-züöäß]+),\s*([0-9]{5})\s*(.+),\s*([0-9]{1})";
-            var parsedPeopleData = Parsepeople(pattern, concatenatedLines);
+            var parsedPeopleData = Parsepeople(PeopleInputRegexPattern, concatenatedLines);
 
             return parsedPeopleData;
         }
@@ -39,7 +39,9 @@ namespace Domain.Services
 
             foreach (var line in concatenatedLines)
             {
-                var matched = Regex.Match(line, pattern);
+                var filteredInput = RemoveSpecialChars(line);
+
+                var matched = Regex.Match(filteredInput, pattern);
                 var person = this._personFactory
                     .WithFirstName(matched.Groups[2].Value)
                     .WithLastName(matched.Groups[1].Value)
@@ -78,6 +80,12 @@ namespace Domain.Services
                 }
             }
             return concatenatedLines;
+        }
+
+        private static string RemoveSpecialChars(string line)
+        {
+            var filteredInput = line.Split(SpecialCharsToRemove, StringSplitOptions.None);
+            return string.Join("", filteredInput);
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Colors.Application.Common;
 using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Web
@@ -14,11 +13,6 @@ namespace Web
                 .AddFluentValidation(validation => validation
                     .RegisterValidatorsFromAssemblyContaining<Result>())
                 .AddNewtonsoftJson();
-
-            services.Configure<ApiBehaviorOptions>(options =>
-            {
-                options.SuppressModelStateInvalidFilter = true;
-            });
 
             return services;
         }

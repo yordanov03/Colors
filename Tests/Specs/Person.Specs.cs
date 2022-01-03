@@ -1,10 +1,9 @@
 ﻿using Domain.Exceptions;
+using Domain.Models;
 using FakeItEasy;
 using FluentAssertions;
 using System;
 using Xunit;
-using Domain.Models;
-using Domain.Factories.PersonFactory;
 
 namespace Tests.Specs
 {
@@ -15,7 +14,7 @@ namespace Tests.Specs
         public void CreatePersonWithValidInput()
         {
             //Act
-            Action person = ()=> A.Dummy<Person>();
+            Action person = () => A.Dummy<Person>();
 
             //Assert
             person.Should().NotThrow<InvalidPersonException>();
@@ -25,7 +24,7 @@ namespace Tests.Specs
         public void CretePersonThrowsExceptionWhenFirstNameEmpty()
         {
             //Arrange
-            var exception = Record.Exception(()=> new Person("", "Smith", "12045", "Berlin", 3));
+            var exception = Record.Exception(() => new Person("", "Smith", "12045", "Berlin", 3));
 
             //Assert
             Assert.NotNull(exception);

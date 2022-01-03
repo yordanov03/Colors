@@ -1,8 +1,6 @@
 using Colors.Application;
 using Colors.Domain;
-using Colors.Infrastructure;
 using Colors.Startup;
-using Colors.Web;
 using Colors.Web.Middleware;
 using Domain.Models;
 using Infrastructure;
@@ -12,7 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Microsoft.EntityFrameworkCore.Design;
+using Serilog;
 using Web;
 
 namespace Startup
@@ -22,18 +20,21 @@ namespace Startup
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(configuration)
+                .CreateLogger();
         }
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             var fileLocation = Configuration.GetSection(FileLocation.LocationOfFile);
             services.Configure<Person>(fileLocation);
 
             services.AddControllers();
-            services.AddDomain();
+            services.AddDomain(this.Configuration);
             services.AddApplication(this.Configuration);
             services.AddInfrastructure(this.Configuration);
             services.AddWebComponents();
@@ -43,7 +44,6 @@ namespace Startup
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -58,8 +58,6 @@ namespace Startup
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

@@ -2,7 +2,7 @@
 
 namespace Domain.Models
 {
-    public class Color : Entity<int>
+    public class Color : Entity<int>, IAggregateRoot
     {
         public string Name { get; }
 

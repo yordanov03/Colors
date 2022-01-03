@@ -4,6 +4,6 @@
     {
         public const string LocationOfFile = "FileLocation";
 
-        public string PeopleData { get; set; } = string.Empty;
+        public string PeopleData { get; set; }
     }
 }

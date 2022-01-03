@@ -1,6 +1,5 @@
 ﻿using Application.Contracts;
 using Colors.Domain.Common;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,8 +12,6 @@ namespace Infrastructure.Persistence.Repositories
         protected DataRepository(PeopleAndColorsDbContext db) => this.Data = db;
 
         protected PeopleAndColorsDbContext Data { get; }
-
-        protected IQueryable<TEntity> All() => this.Data.Set<TEntity>();
 
         public async Task Save(
             TEntity entity,

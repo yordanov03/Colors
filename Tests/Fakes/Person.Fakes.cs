@@ -17,6 +17,6 @@ namespace Tests.Fakes
                 "Smith",
                 "12045",
                 "Berlin",
-                2);
+                 2);
     }
 }

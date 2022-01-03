@@ -37,7 +37,7 @@ namespace Infrastructure.Persistence.Repositories
 
             if(person == null)
             {
-                this._logger.LogError($"Person with {id} does not exist");
+                this._logger.LogError($"Person with id {id} does not exist");
                 throw new NotFoundException("person with id", id );
             }
             var personWithColor = GetColorById(person);

@@ -28,6 +28,7 @@ namespace Tests.Specs
             _peopleRepository = MockPeopleRepository.GetPeopleRepository();
             _colorsRepository = MockColorsRepository.GetColorsrepository();
         }
+
         [Fact]
         public async Task GetAllPeopleSHouldReturnCollectionOfOutputModels()
         {
@@ -66,6 +67,7 @@ namespace Tests.Specs
             //Act
             var result = await handler.Handle(new GetPersonByIdQuery(), CancellationToken.None);
 
+            //Assert
             result.Should().NotBeNull();
             result.Should().BeOfType<PersonOutputModel>();
         }

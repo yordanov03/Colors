@@ -1,7 +1,6 @@
 ﻿using Colors.Application.Exceptions;
 using FluentValidation;
 using MediatR;
-using Serilog;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;

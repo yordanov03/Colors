@@ -17,14 +17,10 @@ namespace Application.Features.People.Queries.GetAllPeople
                 this._peopleRepository = peopleRepository;
             }
             public async Task<IEnumerable<PersonOutputModel>> Handle(GetAllPeopleQuery request, CancellationToken cancellationToken)
-<<<<<<< HEAD
             {
                 var people = await this._peopleRepository.GetAllPeople(cancellationToken);
                 return people;
             }
-=======
-                => await this._peopleRepository.GetAllPeople(cancellationToken);
->>>>>>> development
         }
     }
 }

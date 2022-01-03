@@ -1,6 +1,5 @@
 ﻿using Application.Features.Colors;
 using Application.Features.People.Queries.Common;
-using Colors.Application.Exceptions;
 using MediatR;
 using System.Collections.Generic;
 using System.Threading;
@@ -27,20 +26,8 @@ namespace Application.Features.People.Queries.GetPeopleByColor
             public async Task<IEnumerable<PersonOutputModel>> Handle(GetPeopleByColorQuery request, CancellationToken cancellationToken)
             {
                 var color = await this._colorsRepository.GetColorByName(request.Color, cancellationToken);
-<<<<<<< HEAD
-
-                //if(color == null)
-                //{
-                //    throw new NotFoundException(request.Color, color);
-                //}
                 return await this._peopleRepository.GetPeopleByColor(color.Id, cancellationToken);
             }
-             
-
-=======
-                return await this._peopleRepository.GetPeopleByColor(color.Id, cancellationToken);
-            }
->>>>>>> development
         }
     }
 }

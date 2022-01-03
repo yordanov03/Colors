@@ -1,9 +1,6 @@
 ﻿using Application.Contracts;
 using Colors.Domain.Common;
-<<<<<<< HEAD
 using System.Linq;
-=======
->>>>>>> development
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -17,7 +14,6 @@ namespace Infrastructure.Persistence.Repositories
 
         protected PeopleAndColorsDbContext Data { get; }
 
-<<<<<<< HEAD
         protected IQueryable<TEntity> All() => this.Data.Set<TEntity>();
 
         public async Task Save(
@@ -25,15 +21,6 @@ namespace Infrastructure.Persistence.Repositories
             CancellationToken cancellationToken = default)
         {
             this.Data.Update(entity);
-
-=======
-        public async Task Save(
-            TEntity entity,
-            CancellationToken cancellationToken = default)
-        {
-            this.Data.Update(entity);
-
->>>>>>> development
             await this.Data.SaveChangesAsync(cancellationToken);
         }
     }

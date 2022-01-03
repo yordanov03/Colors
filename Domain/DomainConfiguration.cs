@@ -1,9 +1,5 @@
 ﻿using Colors.Domain.Factories;
 using Domain.Common;
-<<<<<<< HEAD
-using Domain.Factories.PersonFactory;
-=======
->>>>>>> development
 using Domain.InitialData;
 using Domain.Models;
 using Domain.Models.Common;

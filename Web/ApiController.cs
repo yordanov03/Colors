@@ -10,12 +10,6 @@ namespace Colors.Web
     [Route("[controller]")]
     public abstract class ApiController : ControllerBase
     {
-<<<<<<< HEAD
-        public const string PathSeparator = "/";
-        public const string Id = "{id}";
-
-=======
->>>>>>> development
         private IMediator mediator;
 
         protected IMediator Mediator

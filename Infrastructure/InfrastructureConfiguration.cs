@@ -5,11 +5,6 @@ using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-<<<<<<< HEAD
-using Serilog;
-using Serilog.Core;
-=======
->>>>>>> development
 using System.Reflection;
 
 namespace Infrastructure
@@ -20,12 +15,6 @@ namespace Infrastructure
             this IServiceCollection services,
             IConfiguration configuration)
             => services
-<<<<<<< HEAD
-            .AddSingleton<ILogger>(
-                Log.Logger =
-                AddLoggerConfiguration(configuration))
-=======
->>>>>>> development
                 .AddDatabase(configuration)
                 .AddRepositories()
             .AddAutoMapper(Assembly.GetExecutingAssembly());
@@ -50,13 +39,5 @@ namespace Infrastructure
                         .AssignableTo(typeof(IRepository<>)))
                     .AsMatchingInterface()
                     .WithTransientLifetime());
-<<<<<<< HEAD
-
-        internal static ILogger AddLoggerConfiguration(IConfiguration configuration)
-            => new LoggerConfiguration()
-                .ReadFrom.Configuration(configuration)
-                .CreateLogger();
-=======
->>>>>>> development
     }
 }

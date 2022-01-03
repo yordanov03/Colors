@@ -38,34 +38,6 @@ namespace Colors.Domain.Common
             if (!string.IsNullOrEmpty(zipcode))
             {
                 validZipcode = Regex.IsMatch(zipcode, ZipcodeRegexPattern);
-
-<<<<<<< HEAD
-            ThrowException<TException>($"{name} must be between {min} and {max}.");
-        }
-
-
-        public static void Against<TException>(object actualValue, object unexpectedValue, string name = "Value")
-            where TException : BaseDomainException, new()
-        {
-            if (!actualValue.Equals(unexpectedValue))
-            {
-                return;
-            }
-
-            ThrowException<TException>($"{name} must not be {unexpectedValue}.");
-        }
-
-        public static void ForValidZipcode<TException>(string zipcode, string name = "Value")
-           where TException : BaseDomainException, new()
-        {
-            bool validZipcode;
-
-            if (!string.IsNullOrEmpty(zipcode))
-            {
-                validZipcode = Regex.IsMatch(zipcode, ZipcodeRegexPattern);
-
-=======
->>>>>>> development
                 if (validZipcode)
                 {
                     return;

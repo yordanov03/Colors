@@ -32,4 +32,11 @@
     </Content>
   </ItemGroup>
 
+<<<<<<< HEAD
+=======
+  <ItemGroup>
+    <Folder Include="Logs\" />
+  </ItemGroup>
+
+>>>>>>> development
 </Project>

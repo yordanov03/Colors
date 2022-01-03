@@ -4,6 +4,7 @@
         <TId>
         where TId : struct
     {
+<<<<<<< HEAD
         public TId Id { get; private set; } = default;
 
         //public override bool Equals(object? obj)
@@ -49,5 +50,8 @@
         //public static bool operator !=(Entity<TId>? first, Entity<TId>? second) => !(first == second);
 
         //public override int GetHashCode() => (this.GetType().ToString() + this.Id).GetHashCode();
+=======
+        public TId Id { get; private set; }
+>>>>>>> development
     }
 }

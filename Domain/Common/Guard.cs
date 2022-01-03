@@ -30,25 +30,16 @@ namespace Colors.Domain.Common
             ThrowException<TException>($"{name} must have between {minLength} and {maxLength} symbols.");
         }
 
-        public static void AgainstOutOfRange<TException>(int number, int min, int max, string name = "Value")
-            where TException : BaseDomainException, new()
+        public static void ForValidZipcode<TException>(string zipcode, string name = "Value")
+           where TException : BaseDomainException, new()
         {
-            if (min <= number && number <= max)
+            bool validZipcode;
+
+            if (!string.IsNullOrEmpty(zipcode))
             {
-                return;
-            }
+                validZipcode = Regex.IsMatch(zipcode, ZipcodeRegexPattern);
 
-            ThrowException<TException>($"{name} must be between {min} and {max}.");
-        }
-
-        public static void AgainstOutOfRange<TException>(decimal number, decimal min, decimal max, string name = "Value")
-            where TException : BaseDomainException, new()
-        {
-            if (min <= number && number <= max)
-            {
-                return;
-            }
-
+<<<<<<< HEAD
             ThrowException<TException>($"{name} must be between {min} and {max}.");
         }
 
@@ -73,6 +64,8 @@ namespace Colors.Domain.Common
             {
                 validZipcode = Regex.IsMatch(zipcode, ZipcodeRegexPattern);
 
+=======
+>>>>>>> development
                 if (validZipcode)
                 {
                     return;

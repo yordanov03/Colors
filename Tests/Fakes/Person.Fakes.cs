@@ -17,6 +17,10 @@ namespace Tests.Fakes
                 "Smith",
                 "12045",
                 "Berlin",
+<<<<<<< HEAD
                 2);
+=======
+                 2);
+>>>>>>> development
     }
 }

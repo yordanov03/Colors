@@ -1,23 +1,33 @@
 ﻿using Colors.Domain.Common;
 using Domain.Exceptions;
+<<<<<<< HEAD
 using Domain.Models.Common;
 using System.Collections.Generic;
 using System.Linq;
+=======
+>>>>>>> development
 using static Colors.Domain.Common.ModelConstants;
 
 namespace Domain.Models
 {
     public class Person : Entity<int>, IAggregateRoot
     {
+<<<<<<< HEAD
         private static readonly IEnumerable<Color> AllColors
             = new ColorData().GetData().Cast<Color>();
 
         public string FirstName { get;  private set; }
+=======
+        public string FirstName { get; private set; }
+>>>>>>> development
         public string LastName { get; private set; }
         public string Zipcode { get; private set; }
         public string City { get; private set; }
         public int ColorId { get; private set; }
+<<<<<<< HEAD
         //public string Color { get; private set; }
+=======
+>>>>>>> development
 
         public Person(
             string firstName,
@@ -37,8 +47,11 @@ namespace Domain.Models
             this.Zipcode = zipcode;
             this.City = city;
             this.ColorId = colorId;
+<<<<<<< HEAD
 
             //this.ValidateColor(this.ColorId);
+=======
+>>>>>>> development
         }
 
         public void ValidateInput(
@@ -78,6 +91,7 @@ namespace Domain.Models
                 CityMinLength,
                 CityMaxLength,
                 nameof(city));
+<<<<<<< HEAD
 
         //private void ValidateColor(int colorId)
         //{
@@ -93,5 +107,7 @@ namespace Domain.Models
 
         //    throw new InvalidPersonException($"'{color.Name}' is not a valid category. Allowed values are: {allowedColors}.");
         //}
+=======
+>>>>>>> development
     }
 }

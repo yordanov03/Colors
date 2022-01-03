@@ -33,7 +33,11 @@ namespace Web.Features
             [FromRoute] GetPersonByIdQuery query)
         => await this.Send(query);
 
+<<<<<<< HEAD
         //FromQuery attribute for sake of easy testing via SwaggerUI
+=======
+        //FromQuery attribute used for sake of easy testing via SwaggerUI
+>>>>>>> development
         [HttpPost]
         public async Task<ActionResult<CreatePersonOutputModel>> Create(
            [FromQuery] CreatePersonCommand command)

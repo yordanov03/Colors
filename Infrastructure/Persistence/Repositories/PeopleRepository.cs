@@ -30,14 +30,21 @@ namespace Infrastructure.Persistence.Repositories
             this._logger = logger;
         }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> development
         public async Task<PersonOutputModel> GerPersonById(int id, CancellationToken cancellationToken)
         {
             var person = await this.Data.People.FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
 
             if(person == null)
             {
+<<<<<<< HEAD
                 this._logger.LogError($"Person with {id} does not exist");
+=======
+                this._logger.LogError($"Person with id {id} does not exist");
+>>>>>>> development
                 throw new NotFoundException("person with id", id );
             }
             var personWithColor = GetColorById(person);
@@ -75,7 +82,11 @@ namespace Infrastructure.Persistence.Repositories
                 peopleWithColors.Add(GetColorById(person));
             }
 
+<<<<<<< HEAD
             this._logger.LogDebug("Succcessfully matched people with existent colors");
+=======
+            this._logger.LogDebug("Successfully matched people with existent colors");
+>>>>>>> development
             return peopleWithColors;
         }
     }

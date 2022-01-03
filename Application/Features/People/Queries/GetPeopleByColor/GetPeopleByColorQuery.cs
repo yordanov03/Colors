@@ -27,6 +27,7 @@ namespace Application.Features.People.Queries.GetPeopleByColor
             public async Task<IEnumerable<PersonOutputModel>> Handle(GetPeopleByColorQuery request, CancellationToken cancellationToken)
             {
                 var color = await this._colorsRepository.GetColorByName(request.Color, cancellationToken);
+<<<<<<< HEAD
 
                 //if(color == null)
                 //{
@@ -36,6 +37,10 @@ namespace Application.Features.People.Queries.GetPeopleByColor
             }
              
 
+=======
+                return await this._peopleRepository.GetPeopleByColor(color.Id, cancellationToken);
+            }
+>>>>>>> development
         }
     }
 }

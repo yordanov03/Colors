@@ -10,7 +10,6 @@ namespace Tests.Fakes
 
         public bool CanCreate(Type type) => type == typeof(Color);
 
-
         public object Create(Type type)
         => new Color("blau");
     }

@@ -1,15 +1,12 @@
 ﻿using Colors.Domain.Common;
 using Domain.Exceptions;
-using Domain.Models.Common;
-using System.Collections.Generic;
-using System.Linq;
 using static Colors.Domain.Common.ModelConstants;
 
 namespace Domain.Models
 {
     public class Person : Entity<int>, IAggregateRoot
     {
-        public string FirstName { get;  private set; }
+        public string FirstName { get; private set; }
         public string LastName { get; private set; }
         public string Zipcode { get; private set; }
         public string City { get; private set; }

@@ -30,7 +30,6 @@ namespace Infrastructure.Persistence.Repositories
             this._logger = logger;
         }
 
-
         public async Task<PersonOutputModel> GerPersonById(int id, CancellationToken cancellationToken)
         {
             var person = await this.Data.People.FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
@@ -75,7 +74,7 @@ namespace Infrastructure.Persistence.Repositories
                 peopleWithColors.Add(GetColorById(person));
             }
 
-            this._logger.LogDebug("Succcessfully matched people with existent colors");
+            this._logger.LogDebug("Successfully matched people with existent colors");
             return peopleWithColors;
         }
     }

@@ -1,5 +1,4 @@
-﻿using Colors.Application.Common;
-using Colors.Web.Common;
+﻿using Colors.Web.Common;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
